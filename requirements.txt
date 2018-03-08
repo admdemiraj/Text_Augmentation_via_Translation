@@ -1,0 +1,2 @@
+googletrans==2.2.0
+setuptools==38.5.1

@@ -1,0 +1,14 @@
+Metadata-Version: 1.2
+Name: translation-augmentation
+Version: 0.1
+Summary: A python project that augments sentences using neural machine translation.
+Home-page: https://github.com/admdemiraj/Text_Augmentation_via_Translation
+Author: Admir Demiraj
+Author-email: admdemiraj@gmail.com
+License: MIT
+Description-Content-Type: UNKNOWN
+Description: UNKNOWN
+Keywords: data augmentation nlp machine learning
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.6
+Requires-Python: >=3

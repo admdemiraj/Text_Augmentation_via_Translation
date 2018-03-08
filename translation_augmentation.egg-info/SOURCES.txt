@@ -1,0 +1,10 @@
+LICENSE.txt
+MANIFEST.in
+README.rst
+setup.py
+utilities.py
+sample/__init__.py
+translation_augmentation.egg-info/PKG-INFO
+translation_augmentation.egg-info/SOURCES.txt
+translation_augmentation.egg-info/dependency_links.txt
+translation_augmentation.egg-info/top_level.txt
