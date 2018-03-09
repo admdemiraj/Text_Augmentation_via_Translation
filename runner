@@ -1,0 +1,3 @@
+import translation_augmentation.translation_augmentation
+
+translation_augmentation.translation_augmentation.start ()

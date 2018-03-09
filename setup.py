@@ -27,7 +27,8 @@ setup(
     classifiers=[
         'Programming Language :: Python :: 3.6',
     ],
-    keywords='data augmentation nlp machine learning',
+    keywords='data_augmentation nlp machine_learning text_augmentation translation',
+    scripts = ["runner"],
     packages=find_packages(exclude=['contrib', 'docs', 'tests']),
    
 )
