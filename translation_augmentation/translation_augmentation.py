@@ -1,5 +1,5 @@
 from googletrans import Translator
-from utilities import load_cache_translation, write_cache_translation
+from translation_augmentation.utilities import load_cache_translation, write_cache_translation
 import os, sys
 __name__ = translation_augmentation
 
