@@ -1,7 +1,9 @@
 from googletrans import Translator
 from translation_augmentation.utilities import load_cache_translation, write_cache_translation
 import os, sys
-__name__ = translation_augmentation
+import numpy as np
+
+__name__ = "translation_augmentation"
 
 
 def determine_path():
@@ -17,13 +19,14 @@ def determine_path():
         sys.exit()
 
 
-def start ():
+def start():
     print("module is running")
     print(determine_path())
     print("My various data files and so on are:")
     files = [f for f in os.listdir(determine_path() + "/things")]
     print(files)
-    
+
+
 if __name__ == "__main__":
     print("Decide what to do")
 
@@ -56,9 +59,13 @@ def augment_data(text, all_classes, classes_x_times, strategy="single", src="en"
 
     translator = Translator()
     # in order to avoid this time consuming operation, cache the results
-    file = os.getcwd()+"Translation/translation.p"
+    file = os.getcwd() + "/Translation/translation.p"
+    # create a directory /home/name/Translation if it does not exist
+    directory = os.getcwd() + "/Translation/"
+    if not os.path.exists(directory):
+        os.makedirs(directory)
     try:
-        print("Loading translation from cache.")
+        print("Loading translation from cache. At directory: ", directory)
         cache = load_cache_translation(file)
 
         return cache
@@ -66,11 +73,12 @@ def augment_data(text, all_classes, classes_x_times, strategy="single", src="en"
         print("Couldn't load translation from cache.")
         pass
     # X_train that will be returned
-    return_sentences = []
+    return_sentences = np.array([])
     # y_train that will  be returned
     return_all_classes = []
     # all the available languages that we can make translations
-    languages = ["en", "de", "fr", "sp"]
+    languages = ["en", "de", "fr", "es"]
+    # remove the source language so it won't be used as a translation destination
     languages.remove(src)
 
     def translate_single(text, dest):
@@ -87,25 +95,23 @@ def augment_data(text, all_classes, classes_x_times, strategy="single", src="en"
     for idx, sent in enumerate(text):
         print(idx, sent)
         sent = str(sent)
-        return_sentences.append(text)
         return_all_classes.append(all_classes[idx])
+        return_sentences = np.append(return_sentences, sent)
+        # find the position of the class that is present in the sentense
         category = (all_classes[idx] == 1).argmax(axis=0)
 
-        for i in range(1, classes_x_times[category]):
+        for i in range(0, classes_x_times[category]):
             if strategy == "single":
-                translation = translate_single(sent, languages[i-1])
-                return_sentences.append(translation)
+                translation = translate_single(sent, languages[i])
+                print("The translation is: ", translation)
+                return_sentences = np.append(return_sentences, translation)
                 return_all_classes.append(all_classes[idx])
-            else:
-                translation = translate_double(sent, languages[i - 1])
-                return_sentences.append(translation)
-                return_all_classes.append(all_classes[idx])
+            elif strategy == "double":
+                translation = translate_double(sent, languages[i])
+                np.append(return_sentences, translation)
+                np.append(return_all_classes, all_classes[idx])
 
     # write the data to a cache file
     write_cache_translation(file, (return_sentences, return_all_classes))
-
+    return_all_classes = np.array(return_all_classes)
     return return_sentences, return_all_classes
-
-
-
-
