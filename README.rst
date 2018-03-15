@@ -1,4 +1,4 @@
-# Text_Augmentation_via_Translation
+﻿# Text_Augmentation_via_Translation
 A simple method to augment text by using NMT (neural machine translation).
 
 !! Note!! If you have any issues using this library or you feel that it is lacking something don't hesitate to message me.
@@ -77,6 +77,7 @@ print("After augmentation: ", X_train_new, "\n", y_train_new)
 
 
 Method Documentations:
+
 1.
 ### augment_data_simple ###
 '''
