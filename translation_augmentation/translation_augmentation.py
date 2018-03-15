@@ -62,7 +62,11 @@ def augment_data_simple(text, times, strategy="single",src="en"):
                                  e.g. EN to DE to EN
                         double : translate from the original language to 2 other languages and back to the original
                                  e.g. EN to DE to SP to EN
-    src             --> in which language the initial text is in.Possible options 'en','de','sp','fr'
+    src             --> in which language the initial text is in.Possible options 'en','de','es','fr'
+
+    !!Note!! A folder named 'Translation' is created in the current working directory and the translation is saved
+    there in a file named 'translation_simple.p'. If you re-run this method the translation will be loaded from that
+    file in order to save time. If you want to make a new translation each time simply delete the file 'translation_simple.p'.
     '''
 
     # in order to avoid this time consuming operation, cache the results
@@ -127,7 +131,11 @@ def augment_data(text, all_classes, classes_x_times, strategy="single", src="en"
                                  e.g. EN to DE to EN
                         double : translate from the original language to 2 other languages and back to the original
                                  e.g. EN to DE to SP to EN
-    src             --> in which language the initial text is in.Possible options 'en','de','sp','fr'
+    src             --> in which language the initial text is in.Possible options 'en','de','es','fr'
+
+    !!Note!! A folder named 'Translation' is created in the current working directory and the translation is saved
+    there in a file named 'translation.p'. If you re-run this method the translation will be loaded from that
+    file in order to save time. If you want to make a new translation each time simply delete the file 'translation.p'.
 
     '''
 
